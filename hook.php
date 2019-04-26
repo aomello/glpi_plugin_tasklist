@@ -3,7 +3,7 @@
 function plugin_tasklist_install() {
 	global $DB;
 
-	if (!TableExists('glpi_plugin_tasklist_lists')) {
+	if (!$DB->TableExists('glpi_plugin_tasklist_lists')) {
 		$query = "CREATE TABLE `glpi_plugin_tasklist_lists` (
 			`id` INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
 			`name` VARCHAR(255) NOT NULL,
@@ -26,7 +26,7 @@ function plugin_tasklist_uninstall() {
 	foreach ($tables as $table) {
 		$tablename = 'glpi_plugin_tasklist_' . $table;
 
-		if (TableExists($tablename)) {
+		if ($DB->TableExists($tablename)) {
 			$DB->query("DROP TABLE `$tablename`");
 		}
 	}
