@@ -7,7 +7,11 @@ class PluginTasklistList extends CommonDBTM {
 	static function canCreate() {
 		return self::canUpdate();
 	}
-
+	
+	static function canPurge() {
+		return self::canUpdate();
+	}
+	
 	function defineTabs($options=array()){
 		$ong = array();
 		$this->addDefaultFormTab($ong);
@@ -43,12 +47,8 @@ class PluginTasklistList extends CommonDBTM {
 
       		if (!$ID) {
 			echo '<input name=\'name\' value=\'New List Name?\'>';
-			echo "<br><br><br>";
-			
       		} else {
-			echo $this->fields["name"];
-			echo '<input type=\'hidden\' name=\'name\' value=\'' . $this->fields["name"] . '\'>';
-			echo "<br><br><br>";
+			echo '<input name=\'name\' value=\'' . $this->fields["name"] . '\'>';
       		}
 		
 		echo '</td></tr>';
